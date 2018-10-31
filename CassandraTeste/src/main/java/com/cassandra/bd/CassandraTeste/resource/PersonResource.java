@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,10 @@ public class PersonResource {
 	
 	@GetMapping
 	public Flux<Person> buscarTodos(){
-		return persons.findAll();
+		long tempoInicio = System.currentTimeMillis();
+		Flux<Person> pessoas = persons.findAll();
+		System.out.println("Tempo Total: "+(System.currentTimeMillis()-tempoInicio));
+		return pessoas;
 	}
 	
 	@PostMapping
@@ -35,6 +39,11 @@ public class PersonResource {
 		Flux<Person> pessoas = persons.saveAll(person);
 		System.out.println("Tempo Total: "+(System.currentTimeMillis()-tempoInicio));
 		return pessoas;
+	}
+	
+	@DeleteMapping
+	public void deleteAll() {
+		persons.deleteAll( persons.findAll());
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.cassandra.bd.CassandraTeste.model;
+	package com.cassandra.bd.CassandraTeste.model;
 
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
@@ -7,6 +7,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Table
 public class Person {
 
+	
 	@PrimaryKeyColumn(type = PrimaryKeyType.CLUSTERED, ordinal = 2) //
 	private String firstname;
 
